@@ -17,9 +17,10 @@ GameObject:
   - component: {fileID: 11441764}
   - component: {fileID: 114000012184921828}
   - component: {fileID: -51257166919979126}
+  - component: {fileID: 3590249844136953796}
   m_Layer: 0
   m_Name: Collectable_N2
-  m_TagString: Enemy
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146,7 +147,7 @@ MonoBehaviour:
       m_Calls: []
   happenOnlyOnce: 1
   filterByTag: 1
-  filterTag: Ground
+  filterTag: Player
 --- !u!114 &114000012881949288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,7 +161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: 0
-  deathEffect: {fileID: 1496494696399852, guid: 61bb6781d7b9444e89d1fd6eef729832,
+  deathEffect: {fileID: 1496494696399852, guid: e61802031429a4e2e8f547dbca07fe84,
     type: 3}
 --- !u!114 &11441764
 MonoBehaviour:
@@ -188,7 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9c4adaf25c56477b836b81ad48e3bdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsWorth: 1
+  pointsWorth: 500
 --- !u!60 &-51257166919979126
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -226,3 +227,16 @@ PolygonCollider2D:
       - {x: -0.16295427, y: 0.27133003}
       - {x: 0.10341322, y: 0.5473652}
       - {x: 0.29770494, y: 0.18036397}
+--- !u!114 &3590249844136953796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce2de08834c7d3f44b321b863f2de13d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fallSpeed: 0.005
