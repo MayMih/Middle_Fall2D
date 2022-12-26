@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 114000012184921828}
   - component: {fileID: -51257166919979126}
   - component: {fileID: 3590249844136953796}
+  - component: {fileID: 6717837703953732946}
   m_Layer: 0
   m_Name: Collectable_N2
   m_TagString: Pickup
@@ -240,3 +241,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fallSpeed: 0.005
+--- !u!114 &6717837703953732946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3254792e123b0a4dbfe43b1b37a6eda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectEffect: {fileID: 1496494696399852, guid: 61bb6781d7b9444e89d1fd6eef729832,
+    type: 3}

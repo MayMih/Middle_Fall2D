@@ -1,21 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CollectAction), typeof(DestroyAction))]
 public class ActionOnClick : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private GameObject objN1;
+    [SerializeField] private GameObject objN2;
+    [SerializeField] private GameObject objBomb;
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonUp(0))
         {
-            Debug.Log($"{this.name} detected Left mouse button Click!");
+            var col = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            //Debug.Log($"{this.name} detected Left mouse button Click on {col?.name}!");
+            if (col.CompareTag(objN1.tag) || col.CompareTag(objN2.tag) || col.CompareTag(objBomb.tag))
+            {
+                col.GetComponent<CollectAction>()?.ExecuteAction(gameObject);
+            }
         }
     }
 }
