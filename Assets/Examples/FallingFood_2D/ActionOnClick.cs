@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[RequireComponent(typeof(CollectAction), typeof(DestroyAction))]
 public class ActionOnClick : MonoBehaviour
 {
     [SerializeField] private GameObject objN1;
@@ -14,6 +13,10 @@ public class ActionOnClick : MonoBehaviour
         {
             var col = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition));
             //Debug.Log($"{this.name} detected Left mouse button Click on {col?.name}!");
+            if (col == null)
+            {
+                return;
+            }
             if (col.CompareTag(objN1.tag) || col.CompareTag(objN2.tag) || col.CompareTag(objBomb.tag))
             {
                 col.GetComponent<CollectAction>()?.ExecuteAction(gameObject);
