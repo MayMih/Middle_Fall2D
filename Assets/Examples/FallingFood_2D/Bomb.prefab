@@ -198,3 +198,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectEffect: {fileID: 1496494696399852, guid: e61802031429a4e2e8f547dbca07fe84,
     type: 3}
+  lifeImpact: -1
+  scoreImpact: 0
