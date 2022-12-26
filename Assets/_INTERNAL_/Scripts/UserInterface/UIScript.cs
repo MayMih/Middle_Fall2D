@@ -34,7 +34,7 @@ public class UIScript : MonoBehaviour
 
 	private void Start()
 	{
-		if(numberOfPlayers == Players.OnePlayer)
+		if (numberOfPlayers == Players.OnePlayer)
 		{
 			// No setup needed
 		}
