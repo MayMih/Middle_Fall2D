@@ -3,18 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using System.Linq;
+using Unity.VisualScripting;
 
 [AddComponentMenu("")]
 public class UIScript : MonoBehaviour
 {
-	[Header("Configuration")]
+    [Header("Configuration")]
 	public Players numberOfPlayers = Players.OnePlayer;
 
 	public GameType gameType = GameType.Score;
 
 	// If the scoreToWin is -1, the game becomes endless (no win conditions, but you could do game over)
-	public int scoreToWin = 5;
-
+	public int scoreToWin = 5;	
 
 	[Header("References (don't touch)")]
 	//Right is used for the score in P1 games
@@ -30,7 +30,10 @@ public class UIScript : MonoBehaviour
 	private int[] scores = new int[2];
 	private int[] playersHealth = new int[2];
 	private Dictionary<int, ResourceStruct> resourcesDict = new Dictionary<int, ResourceStruct>(); //holds a reference to all the resources collected, and to their UI
-    private bool gameOver = false; 
+    private bool gameOver = false;
+	private HealthSystemAttribute healthSystem;
+	private ObjectCreatorArea creator;
+    private int startHealth;
 
 	/// <summary>
 	/// Сумма очков набранная всеми игроками
@@ -46,36 +49,48 @@ public class UIScript : MonoBehaviour
     //this gets changed when the game is won OR lost
     public bool IsGameOver => gameOver;
 
-	private void Start()
-	{
-		if (numberOfPlayers == Players.OnePlayer)
+    private void Awake()
+    {
+        healthSystem = GameObject.FindObjectOfType<HealthSystemAttribute>();
+		startHealth = healthSystem.health;
+        creator = GameObject.FindObjectOfType<ObjectCreatorArea>();
+    }
+
+    private void Start()
+	{        
+        if (numberOfPlayers == Players.OnePlayer)
 		{
 			// No setup needed
 		}
-		else
-		{
-			if(gameType == GameType.Score)
-			{
-				// Show the 2-player score interface
-				rightLabel.text = leftLabel.text = "Score";
+        else if (gameType == GameType.Score)
+        {
+            // Show the 2-player score interface
+            rightLabel.text = leftLabel.text = "Score";
 
-				// Show the score as 0 for both players
-				numberLabels[0].text = numberLabels[1].text = "0";
-				scores[0] = scores[1] = 0;
-			}
-			else
-			{
-				// Show the 2-player life interface
-				rightLabel.text = leftLabel.text = "Life";
+            // Show the score as 0 for both players
+            numberLabels[0].text = numberLabels[1].text = "0";
+            scores[0] = scores[1] = 0;
+        }
+        else
+        {
+            // Show the 2-player life interface
+            rightLabel.text = leftLabel.text = "Life";
 
-				// Life will be provided by the PlayerHealth components
-			}
-		}
-	}
+            // Life will be provided by the PlayerHealth components
+        }
+    }
 
     public void Restart()
     {
-		Debug.Log("Game restarted by User!");
+		Debug.Log("Game restarted by User!");		
+        statsPanel.SetActive(true);
+        gameOverPanel.SetActive(false);
+		creator.enabled = false;
+		GameObject.FindGameObjectsWithTag(creator.prefabToSpawn.tag).ToList().ForEach(t => Destroy(t.gameObject));
+        healthSystem.ModifyHealth(startHealth);
+		Start();
+        creator.enabled = true;
+        gameOver = false;
     }
 
     //version of the one below with one parameter to be able to connect UnityEvents

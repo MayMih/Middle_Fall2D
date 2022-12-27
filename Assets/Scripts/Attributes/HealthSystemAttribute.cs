@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 [AddComponentMenu("Playground/Attributes/Health System")]
 public class HealthSystemAttribute : MonoBehaviour
@@ -57,6 +56,11 @@ public class HealthSystemAttribute : MonoBehaviour
 			
 		health += amount;
 
+		if (!gameObject.activeSelf)
+		{
+            gameObject.SetActive(true);
+        }
+
 		// Notify the UI so it will change the number in the corner
 		if(ui != null
 			&& playerNumber != -1)
@@ -65,9 +69,10 @@ public class HealthSystemAttribute : MonoBehaviour
 		}
 
 		//DEAD
-		if(health <= 0)
+		if (health <= 0)
 		{
-			Destroy(gameObject);
+			//Destroy(gameObject);
+			gameObject.SetActive(false);
 		}
 	}
 }
