@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System.Linq;
 
 [AddComponentMenu("")]
 public class UIScript : MonoBehaviour
@@ -31,6 +32,16 @@ public class UIScript : MonoBehaviour
 	private Dictionary<int, ResourceStruct> resourcesDict = new Dictionary<int, ResourceStruct>(); //holds a reference to all the resources collected, and to their UI
     private bool gameOver = false; //this gets changed when the game is won OR lost
 
+	/// <summary>
+	/// Сумма очков набранная всеми игроками
+	/// </summary>
+	public int TotalScore
+	{
+		get
+		{
+			return scores.Sum();
+		}
+	}
 
 	private void Start()
 	{
@@ -125,7 +136,7 @@ public class UIScript : MonoBehaviour
 			gameOver = true;
 	        statsPanel.SetActive(false);
 	        gameOverPanel.SetActive(true);
-	    }
+        }
 	}
 
 
