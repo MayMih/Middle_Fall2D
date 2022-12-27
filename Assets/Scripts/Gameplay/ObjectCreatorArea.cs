@@ -11,6 +11,8 @@ public class ObjectCreatorArea : MonoBehaviour
 	// WARNING: take if from the Project panel, NOT the Scene/Hierarchy!
 	public GameObject prefabToSpawn;
 
+	private UIScript ui;
+
 	[Header("Other options")]
 
 	// Configure the spawning pattern
@@ -22,7 +24,8 @@ public class ObjectCreatorArea : MonoBehaviour
 
 	void Start ()
 	{
-		boxCollider2D = GetComponent<BoxCollider2D>();
+        ui = GameObject.FindObjectOfType<UIScript>();
+        boxCollider2D = GetComponent<BoxCollider2D>();
         partOfSpawnAreaWidth = boxCollider2D.size.x / 3;
 		minX = partOfSpawnAreaWidth - boxCollider2D.size.x;
 		maxX = boxCollider2D.size.x - partOfSpawnAreaWidth;
@@ -30,15 +33,18 @@ public class ObjectCreatorArea : MonoBehaviour
 	}
 	
 	// This will spawn an object, and then wait some time, then spawn another...
-	IEnumerator SpawnObject ()
+	IEnumerator SpawnObject()
 	{
 		while(true)
 		{
-			// Generate the new object
-			GameObject newObject = Instantiate<GameObject>(prefabToSpawn);
-            float randomX = transform.position.x + Random.Range(minX, maxX);
-            float randomY = Random.Range(-boxCollider2D.size.y, boxCollider2D.size.y);
-            newObject.transform.position = new Vector2(randomX,randomY + transform.position.y);
+			if (!ui?.IsGameOver ?? true)
+			{
+				// Generate the new object
+				GameObject newObject = Instantiate<GameObject>(prefabToSpawn);
+				float randomX = transform.position.x + Random.Range(minX, maxX);
+				float randomY = Random.Range(-boxCollider2D.size.y, boxCollider2D.size.y);
+				newObject.transform.position = new Vector2(randomX, randomY + transform.position.y);
+			}
             // Wait for some time before spawning another object
             yield return new WaitForSeconds(spawnInterval);
 		}

@@ -85,11 +85,10 @@ public class UIScript : MonoBehaviour
 		Debug.Log("Game restarted by User!");		
         statsPanel.SetActive(true);
         gameOverPanel.SetActive(false);
-		creator.enabled = false;
-		GameObject.FindGameObjectsWithTag(creator.prefabToSpawn.tag).ToList().ForEach(t => Destroy(t.gameObject));
+		// это уже есть в GameOverHandler (по ТЗ)
+		//GameObject.FindGameObjectsWithTag(creator.prefabToSpawn.tag).ToList().ForEach(t => Destroy(t.gameObject));
         healthSystem.ModifyHealth(startHealth);
 		Start();
-        creator.enabled = true;
         gameOver = false;
     }
 
