@@ -331,8 +331,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 145232093
+  m_SortingLayer: -1
   m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: a5452ff130256f24b974258fb1408469, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -433,7 +433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb970c45b40bb4652a8310660a03dfb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 5
+  health: 50
 --- !u!4 &990867870
 Transform:
   m_ObjectHideFlags: 0
@@ -733,6 +733,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a92c0c7668b615d489800b41e6ac9305, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objN1: {fileID: 105984, guid: a05a582239edfa345bc9a37fbbf111a8, type: 3}
+  objN2: {fileID: 105984, guid: 7354dbff4b0968e4ea611bc32c1c31e5, type: 3}
+  objBomb: {fileID: 105984, guid: 8177d22e11d634712aa2c506186fc6bc, type: 3}
 --- !u!1001 &1891330247
 PrefabInstance:
   m_ObjectHideFlags: 0

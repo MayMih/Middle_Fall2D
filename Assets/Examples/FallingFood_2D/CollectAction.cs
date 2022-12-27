@@ -12,9 +12,7 @@ public class CollectAction : Action
     {
         if (collectEffect != null)
         {
-            //GameObject newObject = Instantiate<GameObject>(collectEffect);
-            //newObject.transform.position = transform.position;
-            GameObject newObject = Instantiate(collectEffect, transform.position, transform.rotation);
+            Instantiate<GameObject>(collectEffect, transform.position, transform.rotation);
         }
         Destroy(gameObject);
         return base.ExecuteAction(other);

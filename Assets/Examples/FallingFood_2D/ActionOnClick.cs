@@ -2,8 +2,11 @@ using UnityEngine;
 
 public class ActionOnClick : MonoBehaviour
 {
+    [Header("Предмет дающий мало очков")]
     [SerializeField] private GameObject objN1;
+    [Header("Предмет дающий много очков")]
     [SerializeField] private GameObject objN2;
+    [Header("Предмет отнимающий жизнь")]
     [SerializeField] private GameObject objBomb;
 
     private UIScript userInterface;
@@ -38,7 +41,7 @@ public class ActionOnClick : MonoBehaviour
                     }
                     else if (act.scoreImpact != 0)
                     {
-                        userInterface.AddPoints(act.scoreImpact);
+                        userInterface.AddPoints(0, act.scoreImpact);
                     }
                 }                
             }            
