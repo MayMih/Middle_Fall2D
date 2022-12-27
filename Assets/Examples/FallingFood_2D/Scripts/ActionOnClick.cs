@@ -21,7 +21,7 @@ public class ActionOnClick : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonUp(0))
+        if (!userInterface.IsGameOver && Input.GetMouseButtonUp(0))
         {
             var col = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition));
             //Debug.Log($"{this.name} detected Left mouse button Click on {col?.name}!");

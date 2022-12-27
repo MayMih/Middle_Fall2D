@@ -30,7 +30,7 @@ public class UIScript : MonoBehaviour
 	private int[] scores = new int[2];
 	private int[] playersHealth = new int[2];
 	private Dictionary<int, ResourceStruct> resourcesDict = new Dictionary<int, ResourceStruct>(); //holds a reference to all the resources collected, and to their UI
-    private bool gameOver = false; //this gets changed when the game is won OR lost
+    private bool gameOver = false; 
 
 	/// <summary>
 	/// Сумма очков набранная всеми игроками
@@ -42,6 +42,9 @@ public class UIScript : MonoBehaviour
 			return scores.Sum();
 		}
 	}
+
+    //this gets changed when the game is won OR lost
+    public bool IsGameOver => gameOver;
 
 	private void Start()
 	{
@@ -70,8 +73,13 @@ public class UIScript : MonoBehaviour
 		}
 	}
 
-	//version of the one below with one parameter to be able to connect UnityEvents
-	public void AddOnePoint(int playerNumber)
+    public void Restart()
+    {
+		Debug.Log("Game restarted by User!");
+    }
+
+    //version of the one below with one parameter to be able to connect UnityEvents
+    public void AddOnePoint(int playerNumber)
 	{
 		AddPoints(playerNumber, 1);
 	}
