@@ -13,9 +13,13 @@ public class UIScript : MonoBehaviour
 	public GameType gameType = GameType.Score;
 
 	// If the scoreToWin is -1, the game becomes endless (no win conditions, but you could do game over)
-	public int scoreToWin = 5;
+	public int scoreToWin = 100000;
+	[Header("Кол-во очков, чтобы заработать +1 жизнь")]
+    public int scoreToNewLife = 5000;
     [Header("Метка для вывода итогового кол-ва очков")]
     [SerializeField] private Text totalScore;
+    [Header("Эффект при добавлении 1 жизни")]
+    [SerializeField] private GameObject plusOneLifeEffect;
 
     [Header("References (don't touch)")]
 	//Right is used for the score in P1 games
@@ -35,6 +39,7 @@ public class UIScript : MonoBehaviour
 	private HealthSystemAttribute healthSystem;
 	private ObjectCreatorArea creator;
     private int startHealth;
+	private int lastScoreToLifesCount = 0;
 
 	/// <summary>
 	/// Сумма очков набранная всеми игроками
@@ -79,6 +84,7 @@ public class UIScript : MonoBehaviour
 
             // Life will be provided by the PlayerHealth components
         }
+		lastScoreToLifesCount = 0;
     }
 
     public void Restart()
@@ -106,7 +112,15 @@ public class UIScript : MonoBehaviour
 	{
 		scores[playerNumber] += amount;
 
-		if(numberOfPlayers == Players.OnePlayer)
+		var scoreToLifesCount = scores[playerNumber] / scoreToNewLife;
+		if (scoreToLifesCount > lastScoreToLifesCount)
+		{
+			lastScoreToLifesCount = scoreToLifesCount;			
+			Instantiate(plusOneLifeEffect,  numberLabels[0].transform.position, numberLabels[0].transform.rotation);
+            healthSystem.ModifyHealth(1);
+        }
+
+        if (numberOfPlayers == Players.OnePlayer)
 		{
 			numberLabels[1].text = scores[playerNumber].ToString(); //with one player, the score is on the right
 		}

@@ -15,12 +15,12 @@ public class ObjectCreatorArea : MonoBehaviour
 
 	public float ObjectMovementSpeed = 0.005f;
 
-	[Header("Other options")]
+	[Header("Промежуток времени в секундах между генерацией объектов")]
+	public float SpawnInterval = 2;
+    [Header("Модификатор промежутка времени между генерацией объектов")]
+    [SerializeField] private int SpawnIntervalCoef = 1;
 
-	// Configure the spawning pattern
-	public float spawnInterval = 1;
-
-	private BoxCollider2D boxCollider2D;
+    private BoxCollider2D boxCollider2D;
 
 	private float partOfSpawnAreaWidth, minX, maxX;
 
@@ -58,7 +58,7 @@ public class ObjectCreatorArea : MonoBehaviour
 				newObject.transform.position = new Vector2(randomX, randomY + transform.position.y);
 			}
             // Wait for some time before spawning another object
-            yield return new WaitForSeconds(spawnInterval);
+            yield return new WaitForSeconds(SpawnInterval * SpawnIntervalCoef);
 		}
 	}
 }

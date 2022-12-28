@@ -17,6 +17,9 @@ public class OnSliderMove : MonoBehaviour
         slider = gameObject.GetComponent<Slider>();
     }
 
+    /// <summary>
+    /// Метод применяет значение слайдера к скорости падения объектов (как новых из генератора, так и существующих)
+    /// </summary>
     public void ApplySpeed()
     {
         objectSpawner.GetComponents<ObjectCreatorArea>().ToList().ForEach(area => {
@@ -25,6 +28,17 @@ public class OnSliderMove : MonoBehaviour
                 x.GetComponent<ObjectMovement>().FallSpeed = slider.value);
             }
         );        
-        Debug.Log("Slider moved! " + slider.value);
+        //Debug.Log("Slider moved! " + slider.value);
+    }
+
+    /// <summary>
+    /// Метод применяет значение частоты (промежутка времени) между генерацией объектов 
+    /// </summary>
+    public void ApplyTime()
+    {
+        //Debug.Log("Slider moved! " + slider.value);
+        objectSpawner.GetComponents<ObjectCreatorArea>().ToList().ForEach(area =>
+            area.SpawnInterval = slider.value
+        );        
     }
 }
