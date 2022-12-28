@@ -1,19 +1,18 @@
 using UnityEngine;
 
 [AddComponentMenu("Playground/Actions/Collect Action")]
-public class CollectAction : Action
+public class CollectAction : Action, IExternalAudioPlayable
 {
     // assign an effect (explosion? particles?) or object to be created (instantiated) when the one gets destroyed
     [SerializeField] private GameObject collectEffect;
     public int lifeImpact;
     public int scoreImpact;
     [SerializeField] private AudioClip collectSound;
-    private AudioSource player;
+    /// <summary>
+	/// Назначается создателем объекта
+	/// </summary>
+    public AudioSource Player { get; set; }
 
-    private void Awake()
-    {
-        player = FindObjectOfType<HealthSystemAttribute>()?.GetComponent<AudioSource>();
-    }
 
     public override bool ExecuteAction(GameObject other)
     {
@@ -21,7 +20,7 @@ public class CollectAction : Action
         {
             Instantiate<GameObject>(collectEffect, transform.position, transform.rotation);
         }
-        player.PlayOneShot(collectSound);
+        Player?.PlayOneShot(collectSound, 1);
         Destroy(gameObject);
         return base.ExecuteAction(other);
     }

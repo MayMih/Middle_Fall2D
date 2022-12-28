@@ -82,13 +82,14 @@ public class UIScript : MonoBehaviour
 
     public void Restart()
     {
-		Debug.Log("Game restarted by User!");		
+		//Debug.Log("Game restarted by User!");		
         statsPanel.SetActive(true);
         gameOverPanel.SetActive(false);
 		// это уже есть в GameOverHandler (по ТЗ)
 		//GameObject.FindGameObjectsWithTag(creator.prefabToSpawn.tag).ToList().ForEach(t => Destroy(t.gameObject));
         healthSystem.ModifyHealth(startHealth);
 		Start();
+		Camera.main.gameObject.GetComponent<AudioSource>().Play();
         gameOver = false;
     }
 
@@ -158,8 +159,10 @@ public class UIScript : MonoBehaviour
 			gameOver = true;
 	        statsPanel.SetActive(false);
 	        gameOverPanel.SetActive(true);
+			// По ТЗ уничтожаем все объекты на экране при конце Игры
+            GameObject.FindGameObjectsWithTag(creator.prefabToSpawn.tag).ToList().ForEach(t => Destroy(t.gameObject));
         }
-	}
+    }
 
 
 

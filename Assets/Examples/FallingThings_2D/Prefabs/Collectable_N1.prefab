@@ -175,9 +175,7 @@ MonoBehaviour:
   target: 0
   deathEffect: {fileID: 4593184484909914552, guid: 2e1e9506f5904a64b81744324fb7cd50,
     type: 3}
-  deathSound: {fileID: 8300000, guid: 265f1b8291c116c4c86b29ff0b1fd8c1, type: 3}
-  audioPlayerHolder: {fileID: 7583630186976074150, guid: d35d08e15d44983428aa5c06fafbb631,
-    type: 3}
+  deathSound: {fileID: 8300000, guid: 9dfbed252758c15419860dc957b383dd, type: 3}
 --- !u!114 &11441764
 MonoBehaviour:
   m_ObjectHideFlags: 0

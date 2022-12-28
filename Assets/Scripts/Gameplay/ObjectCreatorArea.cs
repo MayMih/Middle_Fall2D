@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
 
 [AddComponentMenu("Playground/Gameplay/Object Creator Area")]
 [RequireComponent(typeof(BoxCollider2D))]
@@ -41,6 +42,9 @@ public class ObjectCreatorArea : MonoBehaviour
 			{
 				// Generate the new object
 				GameObject newObject = Instantiate<GameObject>(prefabToSpawn);
+				newObject.GetComponents<IExternalAudioPlayable>().ToList().ForEach(x => 
+					x.Player = ui.GetComponent<AudioSource>()
+				);
 				float randomX = transform.position.x + Random.Range(minX, maxX);
 				float randomY = Random.Range(-boxCollider2D.size.y, boxCollider2D.size.y);
 				newObject.transform.position = new Vector2(randomX, randomY + transform.position.y);
