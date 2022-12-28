@@ -14,9 +14,11 @@ public class UIScript : MonoBehaviour
 	public GameType gameType = GameType.Score;
 
 	// If the scoreToWin is -1, the game becomes endless (no win conditions, but you could do game over)
-	public int scoreToWin = 5;	
+	public int scoreToWin = 5;
+    [Header("Метка для вывода итогового кол-ва очков")]
+    [SerializeField] private Text totalScore;
 
-	[Header("References (don't touch)")]
+    [Header("References (don't touch)")]
 	//Right is used for the score in P1 games
 	public Text[] numberLabels = new Text[2];
 	public Text rightLabel, leftLabel;
@@ -25,9 +27,8 @@ public class UIScript : MonoBehaviour
 	public Transform inventory;
 	public GameObject resourceItemPrefab;
 
-
-	// Internal variables to keep track of score, health, and resources, win state
-	private int[] scores = new int[2];
+    // Internal variables to keep track of score, health, and resources, win state
+    private int[] scores = new int[2];
 	private int[] playersHealth = new int[2];
 	private Dictionary<int, ResourceStruct> resourcesDict = new Dictionary<int, ResourceStruct>(); //holds a reference to all the resources collected, and to their UI
     private bool gameOver = false;
@@ -161,6 +162,7 @@ public class UIScript : MonoBehaviour
 	        gameOverPanel.SetActive(true);
 			// По ТЗ уничтожаем все объекты на экране при конце Игры
             GameObject.FindGameObjectsWithTag(creator.prefabToSpawn.tag).ToList().ForEach(t => Destroy(t.gameObject));
+            totalScore.text = TotalScore.ToString();
         }
     }
 
