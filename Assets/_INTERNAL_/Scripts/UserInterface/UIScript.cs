@@ -18,8 +18,10 @@ public class UIScript : MonoBehaviour
     public int scoreToNewLife = 5000;
     [Header("Метка для вывода итогового кол-ва очков")]
     [SerializeField] private Text totalScore;
-    [Header("Эффект при добавлении 1 жизни")]
-    [SerializeField] private GameObject plusOneLifeEffect;
+    [Header("Эффект при победе")]
+    [SerializeField] private GameObject winEffect;
+    [Header("Звук при победе")]
+    [SerializeField] private AudioClip winSound;
 
     [Header("References (don't touch)")]
 	//Right is used for the score in P1 games
@@ -40,6 +42,7 @@ public class UIScript : MonoBehaviour
 	private ObjectCreatorArea creator;
     private int startHealth;
 	private int lastScoreToLifesCount = 0;
+	private AudioSource soundEffectsPlayer;
 
 	/// <summary>
 	/// Сумма очков набранная всеми игроками
@@ -60,6 +63,7 @@ public class UIScript : MonoBehaviour
         healthSystem = GameObject.FindObjectOfType<HealthSystemAttribute>();
 		startHealth = healthSystem.health;
         creator = GameObject.FindObjectOfType<ObjectCreatorArea>();
+		soundEffectsPlayer = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -113,10 +117,10 @@ public class UIScript : MonoBehaviour
 		scores[playerNumber] += amount;
 
 		var scoreToLifesCount = scores[playerNumber] / scoreToNewLife;
-		if (scoreToLifesCount > lastScoreToLifesCount)
+		if (scoreToLifesCount > lastScoreToLifesCount && healthSystem.health < startHealth)
 		{
 			lastScoreToLifesCount = scoreToLifesCount;			
-			Instantiate(plusOneLifeEffect,  numberLabels[0].transform.position, numberLabels[0].transform.rotation);
+			soundEffectsPlayer?.Play();
             healthSystem.ModifyHealth(1);
         }
 
@@ -169,6 +173,8 @@ public class UIScript : MonoBehaviour
 			winLabel.text = "Player " + ++playerNumber + " wins!";
 			statsPanel.SetActive(false);
 			winPanel.SetActive(true);
+			soundEffectsPlayer?.PlayOneShot(winSound);
+			Instantiate(winEffect);
 		}
 	}
 
