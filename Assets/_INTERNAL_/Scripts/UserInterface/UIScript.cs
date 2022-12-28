@@ -89,6 +89,7 @@ public class UIScript : MonoBehaviour
 		// это уже есть в GameOverHandler (по ТЗ)
 		//GameObject.FindGameObjectsWithTag(creator.prefabToSpawn.tag).ToList().ForEach(t => Destroy(t.gameObject));
         healthSystem.ModifyHealth(startHealth);
+		RemoveAllPoints();
 		Start();
 		Camera.main.gameObject.GetComponent<AudioSource>().Play();
         gameOver = false;
@@ -136,6 +137,13 @@ public class UIScript : MonoBehaviour
 		}
 	}
 
+	public void RemoveAllPoints()
+	{
+		for (int i = 0; i < scores.Length; i++)
+		{
+			AddPoints(i, -scores[i]);
+		}
+	}
 
 
 	public void GameWon(int playerNumber)
