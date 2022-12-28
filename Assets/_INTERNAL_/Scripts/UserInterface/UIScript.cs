@@ -1,9 +1,8 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.UI;
+﻿using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
+
+using UnityEngine;
+using UnityEngine.UI;
 
 [AddComponentMenu("")]
 public class UIScript : MonoBehaviour
@@ -30,7 +29,8 @@ public class UIScript : MonoBehaviour
     // Internal variables to keep track of score, health, and resources, win state
     private int[] scores = new int[2];
 	private int[] playersHealth = new int[2];
-	private Dictionary<int, ResourceStruct> resourcesDict = new Dictionary<int, ResourceStruct>(); //holds a reference to all the resources collected, and to their UI
+    //holds a reference to all the resources collected, and to their UI
+    private Dictionary<int, ResourceStruct> resourcesDict = new Dictionary<int, ResourceStruct>(); 
     private bool gameOver = false;
 	private HealthSystemAttribute healthSystem;
 	private ObjectCreatorArea creator;

@@ -7,12 +7,13 @@ using System.Linq;
 public class ObjectCreatorArea : MonoBehaviour
 {
 	[Header("Object creation")]
-
 	// The object to spawn
 	// WARNING: take if from the Project panel, NOT the Scene/Hierarchy!
 	public GameObject prefabToSpawn;
 
 	private UIScript ui;
+
+	public float ObjectMovementSpeed = 0.005f;
 
 	[Header("Other options")]
 
@@ -23,16 +24,22 @@ public class ObjectCreatorArea : MonoBehaviour
 
 	private float partOfSpawnAreaWidth, minX, maxX;
 
-	void Start ()
+	void Start()
 	{
-        ui = GameObject.FindObjectOfType<UIScript>();
-        boxCollider2D = GetComponent<BoxCollider2D>();
-        partOfSpawnAreaWidth = boxCollider2D.size.x / 3;
+		ui = GameObject.FindObjectOfType<UIScript>();
+		boxCollider2D = GetComponent<BoxCollider2D>();
+		partOfSpawnAreaWidth = boxCollider2D.size.x / 3;
 		minX = partOfSpawnAreaWidth - boxCollider2D.size.x;
 		maxX = boxCollider2D.size.x - partOfSpawnAreaWidth;
-        StartCoroutine(SpawnObject());
+		StartCoroutine(SpawnObject());
 	}
-	
+
+	public void SetObjectSpeed(float speed)
+	{
+		ObjectMovementSpeed = speed;
+	}
+
+
 	// This will spawn an object, and then wait some time, then spawn another...
 	IEnumerator SpawnObject()
 	{
@@ -42,7 +49,8 @@ public class ObjectCreatorArea : MonoBehaviour
 			{
 				// Generate the new object
 				GameObject newObject = Instantiate<GameObject>(prefabToSpawn);
-				newObject.GetComponents<IExternalAudioPlayable>().ToList().ForEach(x => 
+                newObject.GetComponent<ObjectMovement>().FallSpeed = ObjectMovementSpeed;
+                newObject.GetComponents<IExternalAudioPlayable>().ToList().ForEach(x => 
 					x.Player = ui.GetComponent<AudioSource>()
 				);
 				float randomX = transform.position.x + Random.Range(minX, maxX);
