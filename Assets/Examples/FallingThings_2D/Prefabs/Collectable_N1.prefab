@@ -144,7 +144,19 @@ MonoBehaviour:
   useCustomActions: 0
   customActions:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   happenOnlyOnce: 1
   filterByTag: 1
   filterTag: Player
@@ -162,6 +174,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: 0
   deathEffect: {fileID: 4593184484909914552, guid: 2e1e9506f5904a64b81744324fb7cd50,
+    type: 3}
+  deathSound: {fileID: 8300000, guid: 265f1b8291c116c4c86b29ff0b1fd8c1, type: 3}
+  audioPlayerHolder: {fileID: 7583630186976074150, guid: d35d08e15d44983428aa5c06fafbb631,
     type: 3}
 --- !u!114 &11441764
 MonoBehaviour:
@@ -259,3 +274,4 @@ MonoBehaviour:
     type: 3}
   lifeImpact: 0
   scoreImpact: 100
+  collectSound: {fileID: 8300000, guid: cbac8a6cc0c19bd448c982822563c812, type: 3}

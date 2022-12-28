@@ -389,7 +389,7 @@ GameObject:
   - component: {fileID: 990867869}
   - component: {fileID: 990867868}
   m_Layer: 0
-  m_Name: CollisionDetector
+  m_Name: CollisionDetector (Player)
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -433,7 +433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb970c45b40bb4652a8310660a03dfb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 30
+  health: 5
 --- !u!4 &990867870
 Transform:
   m_ObjectHideFlags: 0

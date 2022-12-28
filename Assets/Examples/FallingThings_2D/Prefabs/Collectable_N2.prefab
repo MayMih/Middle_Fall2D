@@ -163,6 +163,9 @@ MonoBehaviour:
   target: 0
   deathEffect: {fileID: 2433282508537954060, guid: 3ef3ae421f71c5c4e97fe12dc2fc6312,
     type: 3}
+  deathSound: {fileID: 8300000, guid: 9dfbed252758c15419860dc957b383dd, type: 3}
+  audioPlayerHolder: {fileID: 7583630186976074150, guid: d35d08e15d44983428aa5c06fafbb631,
+    type: 3}
 --- !u!114 &11441764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,3 +246,4 @@ MonoBehaviour:
     type: 3}
   lifeImpact: 0
   scoreImpact: 500
+  collectSound: {fileID: 8300000, guid: 83651bd998c82944984b8529a1081b3d, type: 3}

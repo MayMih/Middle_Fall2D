@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 [AddComponentMenu("Playground/Actions/Destroy Action")]
 public class DestroyAction : Action
@@ -8,10 +7,17 @@ public class DestroyAction : Action
 	public Enums.Targets target = Enums.Targets.ObjectThatCollided;
 	// assign an effect (explosion? particles?) or object to be created (instantiated) when the one gets destroyed
 	public GameObject deathEffect;
+	[SerializeField] private AudioClip deathSound;
+	[SerializeField] private GameObject audioPlayerHolder;
+	private AudioSource player;
 
+    private void Start()
+    {
+        player = audioPlayerHolder?.GetComponent<AudioSource>();
+    }
 
-	//OtherObject is null when this Action is called from a Condition that is not collision-based
-	public override bool ExecuteAction(GameObject otherObject)
+    //OtherObject is null when this Action is called from a Condition that is not collision-based
+    public override bool ExecuteAction(GameObject otherObject)
 	{
 		if(deathEffect != null)
 		{
@@ -21,9 +27,8 @@ public class DestroyAction : Action
 			Vector3 otherObjectPos = (otherObject == null) ? this.transform.position : otherObject.transform.position;
 			newObject.transform.position = (target == Enums.Targets.ObjectThatCollided) ? otherObjectPos : this.transform.position;
 		}
-
-		//remove the GameObject from the scene (destroy)
-		if(target == Enums.Targets.ObjectThatCollided)
+        //remove the GameObject from the scene (destroy)
+        if (target == Enums.Targets.ObjectThatCollided)
 		{
 			if(otherObject != null)
 			{
@@ -32,9 +37,10 @@ public class DestroyAction : Action
 		}
 		else
 		{
-			Destroy(gameObject);
+            player?.PlayOneShot(deathSound);
+            Destroy(gameObject);
 		}
 
-		return true; //always returns true
+		return true; 
 	}
 }
