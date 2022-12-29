@@ -379,7 +379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb970c45b40bb4652a8310660a03dfb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 50
+  health: 5
 --- !u!4 &990867870
 Transform:
   m_ObjectHideFlags: 0
@@ -1098,6 +1098,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923136118381383954, guid: 0f6ae8712879c4f40bf6af3fe490badd,
+        type: 3}
+      propertyPath: m_MaxValue
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 6150896888817824643, guid: 0f6ae8712879c4f40bf6af3fe490badd,
         type: 3}
