@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 114000011533140650}
   - component: {fileID: 114000012881949288}
   - component: {fileID: 11441764}
-  - component: {fileID: -51257166919979126}
   - component: {fileID: 3590249844136953796}
   - component: {fileID: 6717837703953732946}
+  - component: {fileID: 5241066900697692842}
   m_Layer: 0
   m_Name: Collectable_N2
   m_TagString: Pickup
@@ -104,7 +104,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 0.23213565
+  m_Mass: 0.38484508
   m_LinearDrag: 4
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -178,43 +178,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyWhenActivated: 0
   healthChange: -1
---- !u!60 &-51257166919979126
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 105984}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.2890625, y: 2.2443542}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.71449155, y: -0.04234623}
-      - {x: 0.34192204, y: -0.29225302}
-      - {x: 0.32003197, y: -0.7692677}
-      - {x: 0.151286, y: -0.7300506}
-      - {x: -0.106960416, y: -0.48860654}
-      - {x: -0.63433546, y: -0.5598792}
-      - {x: -0.65709317, y: -0.39124626}
-      - {x: -0.5058958, y: -0.13146892}
-      - {x: -0.627165, y: 0.25375986}
-      - {x: -0.16295427, y: 0.27133003}
-      - {x: 0.10341322, y: 0.5473652}
-      - {x: 0.29770494, y: 0.18036397}
 --- !u!114 &3590249844136953796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,7 +190,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce2de08834c7d3f44b321b863f2de13d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallSpeed: 0.005
 --- !u!114 &6717837703953732946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,3 +207,19 @@ MonoBehaviour:
   lifeImpact: 0
   scoreImpact: 500
   collectSound: {fileID: 8300000, guid: 83651bd998c82944984b8529a1081b3d, type: 3}
+--- !u!58 &5241066900697692842
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105984}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.05, y: -0.15}
+  serializedVersion: 2
+  m_Radius: 0.7

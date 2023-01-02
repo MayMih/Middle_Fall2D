@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ActionOnClick : MonoBehaviour
 {
@@ -23,7 +24,8 @@ public class ActionOnClick : MonoBehaviour
     {
         if (!userInterface.IsGameOver && Input.GetMouseButtonDown(0))
         {
-            var col = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            //var col = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            var col = EventSystem.current.currentSelectedGameObject;
             //Debug.Log($"{this.name} detected Left mouse button Click on {col?.name}!");
             if (col == null)
             {
